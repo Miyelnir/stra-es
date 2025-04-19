@@ -1,5 +1,6 @@
-import { serveHTTP } from 'stremio-addon-sdk'
-import { addonBuilder } from 'stremio-addon-sdk'
+import pkg from 'stremio-addon-sdk'
+const { serveHTTP, addonBuilder } = pkg
+
 import fetch from 'node-fetch'
 import translate from '@vitalets/google-translate-api'
 
