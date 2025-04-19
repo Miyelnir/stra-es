@@ -1,0 +1,15 @@
+{
+  "name": "stremio-cinemeta-es",
+  "version": "1.0.0",
+  "description": "Addon de Stremio que traduce los metadatos de Cinemeta al español",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@vitalets/google-translate-api": "^8.0.6",
+    "node-fetch": "^3.3.2",
+    "stremio-addon-sdk": "^1.1.13"
+  },
+  "type": "module"
+}
