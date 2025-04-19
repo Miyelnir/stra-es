@@ -1,3 +1,4 @@
+import { serveHTTP } from 'stremio-addon-sdk'
 import { addonBuilder } from 'stremio-addon-sdk'
 import fetch from 'node-fetch'
 import translate from '@vitalets/google-translate-api'
@@ -6,7 +7,7 @@ const builder = new addonBuilder({
   id: 'cinemeta-es',
   version: '1.0.0',
   name: 'Cinemeta Español',
-  description: 'Traduce los metadatos de Cinemeta al español usando Google Translate no oficial',
+  description: 'Está por ver',
   types: ['movie', 'series'],
   catalogs: [],
   resources: ['meta'],
@@ -30,11 +31,13 @@ builder.defineMetaHandler(async ({ type, id }) => {
   const json = await res.json()
   const meta = json.meta
 
-  // Traducir campos específicos
   meta.name = await translateText(meta.name)
   meta.description = await translateText(meta.description)
 
   return { meta }
 })
 
-export default builder.getInterface()
+// Aquí lanzamos el servidor HTTP para que Render detecte el puerto
+const port = process.env.PORT || 7000
+serveHTTP(builder.getInterface(), { port })
+console.log(`Addon activo en http://localhost:${port}/manifest.json`)
